@@ -40,6 +40,10 @@
                                         <td>{{ $good->price }}</td>
                                     </tr>
                                     <tr>
+                                        <td>Вес</td>
+                                        <td>{{ $good->weight }}</td>
+                                    </tr>
+                                    <tr>
                                         <td>Количество</td>
                                         <td>{{ $good->count }}</td>
                                     </tr>

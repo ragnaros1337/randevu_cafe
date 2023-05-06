@@ -42,6 +42,7 @@
                     </div>
                 </div>
                 <div class="header-row-bottom">
+{{--                    отправляем внутрь все категории из контроллера IndexController -> invoke--}}
                     <header-button-group :categories="{{ $categories }}"></header-button-group>
                 </div>
             </div>

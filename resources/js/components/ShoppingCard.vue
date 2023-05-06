@@ -1,9 +1,12 @@
+<!--наша корзина-->
 <template>
     <div class="header-card" @click="mustOpenDialog()">
         <i class="header-card-icon fas fa-shopping-bag">
+<!--            кружочек с цифрами отображается только если в корзине не 0 товаров-->
             <span v-if="this.$store.getters.count > 0" class="header-card-circle">{{ $store.getters.count }}</span>
         </i>
     </div>
+<!--    диалоговое окно при нажатии на корзину-->
     <v-dialog
         persistent
         v-model="dialog_card"
@@ -48,6 +51,7 @@ export default {
         }
     },
     methods: {
+        //если нажали на корзину, то она обращается в store/index к calculatePrice
         mustOpenDialog(){
             if(this.$store.getters.count > 0){
                 this.$store.dispatch('calculatePrice');

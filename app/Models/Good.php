@@ -22,8 +22,9 @@ use Illuminate\Database\Eloquent\Model;
 class Good extends Model
 {
     use HasFactory;
-
+    //связь с таблицей в БД
     protected $table = 'goods';
+    //обязательная строчка для того, чтобы поля в модели могли заполняться
     protected $guarded = false;
 
 }

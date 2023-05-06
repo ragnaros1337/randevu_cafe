@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('preview_image');
             $table->decimal('price');
             $table->integer('count');
+            $table->integer('weight');
             $table->boolean('is_published')->default(true);
             $table->foreignId('category_id')->nullable()->index()->constrained('categories');
             $table->timestamps();

@@ -28,6 +28,10 @@
                         <input type="text" name="price" value="{{ $good->price }}" class="form-control" placeholder="Цена">
                     </div>
                     <div class="form-group">
+                        <label>Вес</label>
+                        <input type="text" name="weight" value="{{ $good->weight }}" class="form-control" placeholder="Вес">
+                    </div>
+                    <div class="form-group">
                         <label>Доступное количество</label>
                         <input type="text" name="count" value="{{ $good->count }}" class="form-control" placeholder="Доступное количество">
                     </div>

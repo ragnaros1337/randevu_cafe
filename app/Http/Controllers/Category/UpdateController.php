@@ -11,6 +11,7 @@ class UpdateController extends Controller
 {
     public function __invoke(UpdateRequest $request, Category $category)
     {
+        //валидация перед обновлением данных (из папки request). Если не прошла, то ничего не сохранится
         $data = $request->validated();
         $category->update($data);
         return view('category.show', compact('category'));

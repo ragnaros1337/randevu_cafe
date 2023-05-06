@@ -1,11 +1,12 @@
 <template>
         <div class="product-card">
             <div class="card-background"></div>
-<!--            <img @click.stop="dialog = true" width="200px" height="200px" :src="'../storage/' + dataInfo.preview_image" class="card-image-preview">-->
-            <img @click.stop="dialog = true" width="200px" height="200px" class="card-image-preview">
+<!--            по клику на картинку открывается диалоговое окно-->
+            <img @click.stop="dialog = true" width="200px" height="200px" :src="'../storage/' + dataInfo.preview_image" class="card-image-preview">
+<!--            <img @click.stop="dialog = true" width="200px" height="200px" class="card-image-preview">-->
             <div class="card-title">{{ dataInfo.title }}</div>
             <div class="card-description">{{ dataInfo.description }}</div>
-            <div class="card-price">Цена: <span>{{ dataInfo.price }}₽</span></div>
+            <div class="card-price">Цена: <div style="display:flex;">{{ dataInfo.price }}₽/<div v-if="dataInfo.weight < 1000">{{ dataInfo.weight }}гр</div><div v-else>{{ dataInfo.weight / 1000 }}кг</div></div></div>
             <div class="card-count">Количество: <span>{{ dataInfo.count }}</span></div>
             <div class="card-slider">
                 <span class="card-slider-remove">
@@ -24,7 +25,7 @@
                 width="auto">
                 <v-card>
                     <div class="product-card-dialog">
-<!--                        <img width="200px" height="200px" :src="'../storage/' + dataInfo.preview_image" class="card-dialog-image-preview">-->
+                        <img width="200px" height="200px" :src="'../storage/' + dataInfo.preview_image" class="card-dialog-image-preview">
                         <div class="card-dialog-title">{{ dataInfo.title }}</div>
                         <div class="card-dialog-description">{{ dataInfo.description }}</div>
                         <div class="card-dialog-article">Артикул: {{ dataInfo.article }}</div>
@@ -49,6 +50,9 @@ export default {
         }
     },
     methods: {
+        //записывает количество товаров в переменную count, которая отображается в кружочке рядом с корзиной
+        //далее заполняется переменная заказа, куда отправляется артикул, название, цена и количество.
+        //Можно отправить хоть все значения, но оно надо?
         add_to_card(){
             this.$store.state.count = this.$store.state.count + this.slider_value;
             this.$store.state.order.push({article: this.dataInfo.article,
@@ -56,12 +60,14 @@ export default {
                                         price: this.dataInfo.price,
                                         count: this.slider_value});
         },
+        //Увеличим значение слайдера
        slider_add(){
            if(this.slider_value < this.dataInfo.count){
                this.slider_value = this.slider_value + 1;
 
            }
        },
+        //Уменьшим значение слайдера
         slider_remove(){
             if(this.slider_value > 1){
                 this.slider_value--

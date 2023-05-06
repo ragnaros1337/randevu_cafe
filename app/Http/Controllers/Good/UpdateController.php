@@ -11,6 +11,7 @@ class UpdateController extends Controller
 {
     public function __invoke(UpdateRequest $request, Good $good)
     {
+        //валидация перед обновлением данных (из папки request). Если не прошла, то ничего не сохранится
         $data = $request->validated();
         $good->update($data);
         return view('good.show', compact('good'));

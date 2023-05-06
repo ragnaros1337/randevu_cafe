@@ -11,8 +11,10 @@ class StoreController extends Controller
 {
     public function __invoke(StoreRequest $request)
     {
+        //валидация данных перед сохранением из папки request. Если не прошла, то ничего не сохранится.
         $data = $request->validated();
 
+        //кладем загруженное изображение в папку storage/public/images
         $data['preview_image'] = \Storage::disk('public')->put('/images', $data['preview_image']);
 
         //TODO: Здесь надо добавить правила уникальности имени, что все в порядке было

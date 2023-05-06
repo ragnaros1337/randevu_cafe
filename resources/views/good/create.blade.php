@@ -23,6 +23,9 @@
                         <input type="text" name="price" class="form-control" placeholder="Цена">
                     </div>
                     <div class="form-group">
+                        <input type="text" name="weight" class="form-control" placeholder="Вес">
+                    </div>
+                    <div class="form-group">
                         <input type="text" name="count" class="form-control" placeholder="Доступное количество">
                     </div>
 {{--                    TODO:Потом переделать на множественность категорий + миграцию. Сейчас нет времени--}}

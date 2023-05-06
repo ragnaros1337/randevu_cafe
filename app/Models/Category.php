@@ -20,6 +20,8 @@ use Illuminate\Database\Eloquent\Model;
 class Category extends Model
 {
     use HasFactory;
+        //связь с таблицей в БД
         protected $table = 'categories';
+        //обязательная строчка для того, чтобы поля в модели могли заполняться
         protected $guarded = false;
 }

@@ -34,7 +34,14 @@ class IndexController extends Controller
 
     //проверяет валидность количества каждого товара в заказе на случай если двое одновременно делают заказ
     //одних и тех же позиций и кто-то сделал заказ раньше
-    public function checkCountInOrders(Request $request){
-
+    public function checkOrdersCount(Request $request){
+        $items = json_decode($request->order_count);
+        $output = [];
+        for ($i = 0; $i < count($items) ; $i++){
+            $db_data = Good::where('article',$items[$i]->article)->select(['article', 'count'])->get();
+            if($db_data[$i]->count < $items[$i]->count)
+                array_push($output, $db_data[$i]);
+        }
+        return response()->json(['checked_count' => $output]);
     }
 }

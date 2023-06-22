@@ -11,6 +11,9 @@
         v-model="this.$store.getters.pagination.page"
         :length="this.$store.getters.pagination.length"
         :total-visible="this.$store.getters.pagination.total_visible"
+        next-icon="mdi-arrow-right-thin"
+        prev-icon="mdi-arrow-left-thin"
+        class="card-pagination"
     ></v-pagination>
 </template>
 

@@ -28,6 +28,7 @@ const store = createStore({
         //отправляем запрос на сервер по адресу в route /api/get_filtered_database
         //отправляя туда текущий фильтр и номер страницы
         GET_FILTERED_GOODS_FROM_API({commit, state}, db_filter){
+                //конструкция для отправки данных на сервер
                 axios.post('/api/get_filtered_database', {
                     filter: JSON.stringify(db_filter.filter),
                     next_page: db_filter.next_page
@@ -51,6 +52,26 @@ const store = createStore({
         //зовем мутацию GET_FILTERED_GOODS_FROM_API отправляя ей фильтр
         CHANGE_FILTER_VALUE({commit}, db_filter){
             this.dispatch('GET_FILTERED_GOODS_FROM_API', {filter : db_filter});
+        },
+        CHECK_ORDERS_COUNT({commit, state}){
+            let temp = [];
+            for(let i = 0; i < state.order.length; i++){
+                temp.push({article: state.order[i].article,
+                    count: state.order[i].count});
+            }
+            axios.post('/api/check_orders_count', {
+                order_count: JSON.stringify(temp),
+            })
+                .then(response => {
+                    if(response.data.checked_count.length > 0)
+                        commit('CHANGE_ORDERS_COUNT', response.data.checked_count);
+                    else
+                        console.log('zdes sohranenie zakaza')
+                })
+                //ловим ошибки в консоль
+                .catch(error => {
+                    console.log(error);
+                })
         }
     },
     mutations: {
@@ -70,6 +91,13 @@ const store = createStore({
             state.cards = data.data
             state.pagination.page = data.current_page;
             state.pagination.length = data.last_page;
+        },
+        CHANGE_ORDERS_COUNT(state, data){
+            console.log(state.order)
+            const result = state.order.find(({ article }) => article === data.article);
+            console.log(result)
+            // temp.count = data.count;
+            // console.log(state.order)
         }
     },
     //при помощи этого получаем АКТУАЛЬНЫЕ значения переменных из state

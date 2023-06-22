@@ -17,6 +17,7 @@
     <!-- Styles -->
     <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('adminlte/plugins/fontawesome-free/css/all.min.css') }}">
+{{--    <link rel="stylesheet" href="build/assets/{{ $style }}">--}}
     @vite('resources/sass/app.scss')
     @vite('resources/js/app.js')
 </head>
@@ -25,25 +26,14 @@
     <div class="wrapper">
         <header class="header container-fluid" style="flex-shrink: 0">
             <div class="header-row row">
-                <div class="header-top">
-                    <div class="header-row-left">
-                        <div class="header-label">
-                            <i class="fas fa-coffee"></i>
-                        </div>
-                        <div class="header-title">
-                            Рандеву
-                        </div>
-                    </div>
-                    <div class="header-row-right">
-                        <div class="header-about">
-                            Как мы работаем
-                        </div>
-                        <shopping-card></shopping-card>
-                    </div>
+                <div class="header-left col-3" v-if="">
+                    <div class="header-logo" style="background-image: url('{{ asset('storage/logo/logo.webp') }}');"></div>
                 </div>
-                <div class="header-row-bottom">
-{{--                    отправляем внутрь все категории из контроллера IndexController -> invoke--}}
+                <div class="header-middle col-7">
                     <header-button-group :categories="{{ $categories }}"></header-button-group>
+                </div>
+                <div class="header-right col-2">
+                    <shopping-card></shopping-card>
                 </div>
             </div>
         </header>

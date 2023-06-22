@@ -32,7 +32,8 @@
                             <div class="shopping-card-itogo-price">{{ this.$store.getters.calculated_price }} ₽</div>
                         </div>
                     <v-card-actions class="shopping-card-dialog-actions">
-                        <v-btn variant="tonal" color="#61ADF8FF" rounded="sm" elevation="4">Оформить заказ</v-btn>
+                        <v-btn @click="this.$store.dispatch('CHECK_ORDERS_COUNT');"
+                               variant="tonal" color="#61ADF8FF" rounded="sm" elevation="4">Оформить заказ</v-btn>
                         <v-btn variant="tonal" color="#61ADF8FF"
                                rounded="sm" elevation="4" @click="this.dialog_card = false">Закрыть</v-btn>
                     </v-card-actions>

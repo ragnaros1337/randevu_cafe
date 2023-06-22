@@ -60,4 +60,5 @@ Route::group(['prefix' => 'admin'], function(){
 
 Route::prefix('api')->group(function(){
     Route::post('/get_filtered_database', [App\Http\Controllers\IndexController::class, 'getFilteredDatabase'])->name('api.filter');
+    Route::post('/check_orders_count', [App\Http\Controllers\IndexController::class, 'checkOrdersCount'])->name('api.count');
 });

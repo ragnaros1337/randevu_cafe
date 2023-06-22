@@ -1,6 +1,6 @@
 <template>
 <!--    по клику на фильтре обращаемся к GET_FILTERED_GOODS_FROM_API отправляя фильтр и первую страницу-->
-    <v-btn-toggle v-model="good_filter"
+    <v-btn-toggle v-model="good_filter" class="header-buttons button-large-screen"
                   min-width="120px"
                   color="white"
                   divided
@@ -11,6 +11,15 @@
             {{ category.title }}
         </v-btn>
     </v-btn-toggle>
+    <v-select class="header-buttons-select button-small-screen"
+        :items="categories"
+        variant="underlined"
+        hide-details="true"
+        color="white"
+        v-model="good_filter"
+        theme="dark"
+        @update:modelValue="this.$store.dispatch('GET_FILTERED_GOODS_FROM_API', {filter : good_filter, next_page: 1})"
+    ></v-select>
 </template>
 
 <script>
@@ -27,8 +36,10 @@ export default {
         }
     },
     methods:{
-
-    }
+        clog(msg){
+            console.log(msg)
+        }
+    },
 }
 </script>
 

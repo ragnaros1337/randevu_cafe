@@ -1,25 +1,25 @@
 <template>
         <div class="product-card">
             <div class="card-background"></div>
-<!--            по клику на картинку открывается диалоговое окно-->
+            <!--            по клику на картинку открывается диалоговое окно-->
             <img @click.stop="dialog = true" width="200px" height="200px" :src="'../storage/' + dataInfo.preview_image" class="card-image-preview">
-<!--            <img @click.stop="dialog = true" width="200px" height="200px" class="card-image-preview">-->
+            <!--            <img @click.stop="dialog = true" width="200px" height="200px" class="card-image-preview">-->
             <div class="card-title">{{ dataInfo.title }}</div>
             <div class="card-description">{{ dataInfo.description }}</div>
             <div class="card-price">Цена: <div style="display:flex;">{{ dataInfo.price }}₽/<div v-if="dataInfo.weight < 1000">{{ dataInfo.weight }}гр</div><div v-else>{{ dataInfo.weight / 1000 }}кг</div></div></div>
             <div class="card-count">Количество: <span>{{ dataInfo.count }}</span></div>
             <div class="card-slider">
-                <span class="card-slider-remove">
-                    <i class="fa fa-2x fa-minus-circle" @click="slider_remove()"></i>
-                </span>
+            <span class="card-slider-remove">
+                <i class="fa fa-2x fa-minus-circle" @click="slider_remove()"></i>
+            </span>
                 <div class="card-slider-value-container">
                     <span class="card-slider-value">{{ slider_value }}</span>
                 </div>
                 <span class="card-slider-add" @click="slider_add()">
-                    <i class="fa fa-2x fa-plus-circle"></i>
-                </span>
+                <i class="fa fa-2x fa-plus-circle"></i>
+            </span>
             </div>
-            <v-btn variant="outlined" class="card-button" @click="add_to_card()" :color="'#ffffff'">Заказать</v-btn>
+            <v-btn variant="flat" height="30" width="150" class="card-button" @click="add_to_card()" :color="'#ffffff'">Заказать</v-btn>
             <v-dialog
                 v-model="dialog"
                 width="auto">
